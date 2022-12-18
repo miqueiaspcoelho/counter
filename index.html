@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter (contador)</title>
+
+    <!--css code (código css)-->
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: black;
+            color: white;
+            display: grid;
+            place-items: center;
+        }
+
+        section {
+            background-color: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        button {
+            border-radius: 5px;
+            padding: 0px 10px;
+            font-size: 40px;
+            text-align: center;
+        }
+        .button{
+            transition-duration: 0.4s;
+            text-transform: uppercase;
+            margin: 0 3px;
+        }
+        .button:hover{
+            background-color: royalblue;
+            color: white;
+        }
+        
+        #valueCounter{
+            font-size: 100px;
+            color: white;
+        }
+
+       
+    </style>
+</head>
+<body>
+    
+    <section>
+        <h1 id="title">Counter</h1>
+        <p id="valueCounter">0</p>
+        <button class="button" onclick="subCounter()"><strong>-</strong></button>
+        <button class="button" onclick="addCounter()"><strong>+</strong></button>
+    </section>
+
+    <!--JavaScript code (lógica do código)-->
+    <script>
+        let counter=0; //local counter (contador local)
+        let globalCounter=0;//global counter (contador global)
+        const update = document.querySelector("#valueCounter"); //select id valueCounter (seleciona id valueCounter)
+        const title = document.querySelector("#title");//select id title (seleciona id title)
+        const colors =['#836FFF','#7FFFD4','#A0522D','#9932CC','#F0E68C']//array of colors (vetor de cores)
+        
+        //increase counter (incrementa contador)
+        function addCounter(){
+            counter++;
+            globalCounter++
+            updateCounterValue();
+        }
+
+        //decrease counter (decrementa contador)
+        function subCounter(){
+            counter--;
+            globalCounter++
+            updateCounterValue();
+        }
+
+        //check favorite number (checa se é o número favorito)
+        function favoriteNumber(){
+            if(counter==21){
+                alert(`${counter} it's my favorite number!!`);
+            }
+        }
+
+        //show the global clicks (mostra número global de clicks)
+        function takeEasy(){
+            if(counter%100==0){
+                alert(`${globalCounter} clicks, Take easy!! Calm down`);
+            }
+        }
+
+        //change the color the text counter (muda a cor do texto do contador)
+        function changeColorCounter(){
+            var pos =Math.floor(Math.random()*4);
+            var change = colors[pos];
+            update.style.color = colors[pos];
+        }
+
+        //change the title (muda o título)
+        function changeTitle(){
+            var newtitle = ['G','O','O','D','J','O','B'];
+            var aux = (title.innerText.split(""));
+            switch (globalCounter) {
+                case 7:
+                    aux[0]=newtitle[0];
+                break;
+                case 15:
+                    aux[1]=newtitle[1];
+                    aux[2]=newtitle[2];
+                    aux[5]=newtitle[5];
+                break;
+                case 4:
+                    aux[3]=newtitle[3];
+                break;
+                case 10:
+                    aux[4]=newtitle[4];
+                break;
+                case 2:
+                    aux[6]=newtitle[6];
+                break;
+            }
+            title.innerText = aux.join('');
+        }
+
+        //render the screen with the new values (atualiza a tela para os novos valores)
+        function updateCounterValue(){ 
+            update.innerText = counter;
+            favoriteNumber();
+            takeEasy();
+            if(globalCounter%10==0){
+                changeColorCounter();
+            }
+            changeTitle();
+        }
+    </script>
+</body>
+</html>
