@@ -17,3 +17,7 @@ JavaScript para construir a lógica da aplicação.
 HTML 5 for building the project skeleton;
 CSS to style the page;
 JavaScript to build application logic.
+
+# Dê uma olhada (Take a look)
+
+https://miqueias-coelho-counterproject.netlify.app/
